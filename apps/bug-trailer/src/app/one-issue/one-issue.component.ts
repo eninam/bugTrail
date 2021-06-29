@@ -59,20 +59,21 @@ export class OneIssueComponent implements OnInit {
   }
   updateIssue() {
     let duedate = this.oneIssue.due_date;
-    let assignedTo = this.issueForm.value.assignedTo;
+    // let assignedTo = this.issueForm.value.assignedTo;
     if (this.issueForm.value.due_date) {
       duedate = `${this.issueForm.value.due_date.year}-${this.issueForm.value.due_date.month}-${this.issueForm.value.due_date.day}`;
     }
-    if (!assignedTo) {
-      assignedTo = this.oneIssue.userName;
-    }
+    // if (!assignedTo) {
+    //   assignedTo = this.oneIssue.userName;
+    // }
     const issue = {
       title: this.issueForm.value.title?.toLowerCase()?.trim(),
       description: this.issueForm.value.description,
       status: this.issueForm.value.status || this.oneIssue.status,
       priority: this.issueForm.value.priority || this.oneIssue.priority,
       due_date: duedate,
-      assignedTo: assignedTo,
+      assignedTo:
+        this.issueForm.value.assignedTo || this.oneIssue.assignedToEmail,
       project: this.issueForm.value.project || this.oneIssue.projectName,
       updatedBy: this.email,
     };

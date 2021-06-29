@@ -56,7 +56,7 @@ export class IssueService {
         assignedTo: assignedUser,
         project: assignedProject,
         projectName: assignedProject.projectName,
-        userName: assignedUser.name,
+        assignedToEmail: assignedUser.email,
         createdByName: createdByName,
         createdByEmail: createdByEmail,
       });
@@ -144,7 +144,7 @@ export class IssueService {
     if (assignedTo) {
       const assignedUser = await this.userService.findOne(assignedTo);
       foundIssue.assignedTo = assignedUser;
-      foundIssue.userName = assignedUser.name;
+      foundIssue.assignedToEmail = assignedUser.email;
     }
     if (project) {
       const assignedProject = await this.projectService.findOne(project);

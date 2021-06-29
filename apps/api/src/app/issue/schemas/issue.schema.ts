@@ -34,7 +34,7 @@ export class Issue {
   @Prop()
   projectName: string;
   @Prop()
-  userName: string;
+  assignedToEmail: string;
   @Prop()
   createdByName: string;
   @Prop()

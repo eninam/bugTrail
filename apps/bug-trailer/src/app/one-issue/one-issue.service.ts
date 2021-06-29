@@ -13,7 +13,7 @@ export class OneIssueService {
       status: updatedIssue?.status,
       priority: updatedIssue?.priority,
       due_date: updatedIssue?.due_date,
-      assignedTo: updatedIssue?.userEmail,
+      assignedTo: updatedIssue?.assignedTo,
       project: updatedIssue?.project,
       updatedBy: updatedIssue?.updatedBy,
     });

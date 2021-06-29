@@ -65,8 +65,8 @@
     <label for="exampleFormControlSelect1">Assign User to Issue</label>
     <select formControlName="assignedTo" class="form-control" id="exampleFormControlSelect1">
       <!-- <option disabled selected value> -- select an option -- </option> -->
-      <option disabled selected value> {{this?.oneIssue?.userName}}</option>
-      <option *ngFor="let user of allUsers; let i = index" [attr.data-index]="i">{{user.name}}</option>
+      <option disabled selected value> {{this?.oneIssue?.assignedToEmail}}</option>
+      <option *ngFor="let user of allUsers; let i = index" [attr.data-index]="i">{{user.email}}</option>
     </select>
   </div>
   <div class="form-group">
