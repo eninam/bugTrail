@@ -6,7 +6,7 @@ import {
   Req,
   UseGuards,
 } from '@nestjs/common';
-import { UserDocument } from '../user/schemas/User.schema';
+import { UserDocument } from '../user/schemas/user.schema';
 // '../user/schemas/User.schema';
 import { AuthService } from './auth.service';
 import { LocalAuthGuard } from './guards/local-auth.guard';
