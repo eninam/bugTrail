@@ -30,7 +30,7 @@ export class AuthService {
   }
   getUserDetails(name: any, password: any, email: any) {
     // post these details to API server return user info if correct
-    return this.http.post<myData>('http://localhost:3333/api/auth/login', {
+    return this.http.post<myData>('/api/auth/login', {
       email: email.toLowerCase().trim(),
       name: name,
       password: password,
@@ -38,7 +38,7 @@ export class AuthService {
   }
   register(name: any, password: any, email: any) {
     // post these details to API server return user info if correct
-    return this.http.post<myData>('http://localhost:3333/api/auth/register', {
+    return this.http.post<myData>('/api/auth/register', {
       email: email.toLowerCase().trim(),
       name: name,
       password: password,
@@ -46,7 +46,7 @@ export class AuthService {
   }
   getAllUsers() {
     console.log('getProject ran with name ');
-    return this.http.get<any>(`http://localhost:3333/api/user`);
+    return this.http.get<any>(`/api/user`);
   }
 
   loggOut() {

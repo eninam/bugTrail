@@ -7,11 +7,11 @@ import { HttpClient } from '@angular/common/http';
 export class IssueService {
   constructor(private http: HttpClient) {}
   getIssues() {
-    return this.http.get<any>('http://localhost:3333/api/issue');
+    return this.http.get<any>('/api/issue');
   }
   createIssue(issue: any) {
     console.log('issue ', issue);
-    return this.http.post<any>('http://localhost:3333/api/issue', {
+    return this.http.post<any>('/api/issue', {
       title: issue.title,
       description: issue.description,
       status: issue.status,

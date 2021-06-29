@@ -7,7 +7,7 @@ import { HttpClient } from '@angular/common/http';
 export class OneIssueService {
   constructor(private http: HttpClient) {}
   updateIssue(title: string | null, updatedIssue: any) {
-    return this.http.patch<any>(`http://localhost:3333/api/issue/${title}`, {
+    return this.http.patch<any>(`/api/issue/${title}`, {
       title: updatedIssue?.title,
       description: updatedIssue?.description,
       status: updatedIssue?.status,
@@ -19,6 +19,6 @@ export class OneIssueService {
     });
   }
   getOneIssue(title: string | null) {
-    return this.http.get<any>(`http://localhost:3333/api/issue/${title}`);
+    return this.http.get<any>(`/api/issue/${title}`);
   }
 }

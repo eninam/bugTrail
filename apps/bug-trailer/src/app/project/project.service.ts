@@ -7,11 +7,11 @@ import { HttpClient } from '@angular/common/http';
 export class ProjectService {
   projects$;
   constructor(private http: HttpClient) {
-    this.projects$ = this.http.get<any>('http://localhost:3333/api/project');
+    this.projects$ = this.http.get<any>('/api/project');
     // console.log('projects ', this.projects$);
   }
   createProject(projectName: any, projectDescription: any) {
-    return this.http.post<any>('http://localhost:3333/api/project', {
+    return this.http.post<any>('/api/project', {
       projectName: projectName,
       projectDescription: projectDescription,
     });
