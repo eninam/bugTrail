@@ -6,8 +6,8 @@
     "ng": "nx",
     "postinstall": "node ./decorate-angular-cli.js && ngcc --properties es2015 browser module main",
     "nx": "nx",
-    "start": "ng serve",
-    "build": "ng build",
+    "start": "node dist/apps/api/main.js",
+    "build": "nx build --prod && nx build api --prod",
     "test": "ng test",
     "lint": "nx workspace-lint && ng lint",
     "e2e": "ng e2e",
@@ -99,5 +99,9 @@
     "ts-jest": "27.0.3",
     "ts-node": "~9.1.1",
     "typescript": "~4.2.4"
+  },
+  "engines": {
+    "node": "14.15.3",
+    "npm": "6.14.9"
   }
 }
