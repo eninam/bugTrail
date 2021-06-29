@@ -1,0 +1,88 @@
+<!-- <p>one-issue works!</p> -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="/admin">BUGTRAIL</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText"
+    aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarText">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="/admin">Home <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#" (click)="loggout()">Logout</a>
+      </li>
+      <!-- <li class="nav-item">
+        <a class="nav-link" href="#">Pricing</a>
+      </li> -->
+    </ul>
+    <span class="navbar-text">
+      Welcome, {{name}}
+    </span>
+  </div>
+</nav>
+
+<form [formGroup]="issueForm">
+  <div class="form-group">
+    <label for="formGroupExampleInput">Issue Name</label>
+    <input formControlName="title" type="text" class="form-control" id="formGroupExampleInput">
+  </div>
+  <div class="form-group">
+    <label for="exampleFormControlSelect1">Status</label>
+    <select formControlName="status" class="form-control" id="exampleFormControlSelect1">
+      <option *ngIf="this.oneIssue" disabled selected value>{{this.oneIssue.status}}</option>
+      <option>Started</option>
+      <option>In progress</option>
+      <option>finished</option>
+    </select>
+  </div>
+  <div class="form-group">
+    <label for="exampleFormControlSelect1">Priority</label>
+    <select formControlName="priority" class="form-control" id="exampleFormControlSelect1">
+      <option *ngIf="this.oneIssue" selected value> {{this.oneIssue.priority}}</option>
+      <option>Low</option>
+      <option>Medium</option>
+      <option>High</option>
+    </select>
+  </div>
+  <!-- add datepicker -->
+  <div class="form-group">
+    <div class="input-group">
+      <input formControlName="due_date" class="form-control" placeholder='{{this?.oneIssue?.due_date}}' name="dp"
+        #d="ngbDatepicker" ngbDatepicker>
+      <!-- #d="ngbDatepicker" -->
+      <div class="input-group-append">
+        <button class="btn btn-outline-secondary calendar " (click)="d.toggle()" type="button">
+          <!-- (click)="d.toggle()" -->
+        </button>
+      </div>
+    </div>
+  </div>
+  <!-- <hr /> -->
+  <!-- <pre>Model: {{ model | json }}</pre> -->
+  <div class="form-group">
+    <label for="exampleFormControlSelect1">Assign User to Issue</label>
+    <select formControlName="assignedTo" class="form-control" id="exampleFormControlSelect1">
+      <!-- <option disabled selected value> -- select an option -- </option> -->
+      <option disabled selected value> {{this?.oneIssue?.userName}}</option>
+      <option *ngFor="let user of allUsers; let i = index" [attr.data-index]="i">{{user.name}}</option>
+    </select>
+  </div>
+  <div class="form-group">
+    <label for="exampleFormControlSelect1">Assign Issue to Project</label>
+    <select formControlName="project" class="form-control" id="exampleFormControlSelect1">
+      <!-- <option disabled selected value> -- select an option -- </option> -->
+      <option disabled selected value> {{this?.oneIssue?.projectName}}</option>
+
+      <option *ngFor="let project of projects; let i = index" [attr.data-index]="i">{{project.projectName}}
+      </option>
+    </select>
+  </div>
+  <div class="form-group">
+    <label for="exampleFormControlTextarea1">Issue Description</label>
+    <textarea formControlName="description" class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+  </div>
+  <button type="button" style="width: fit-content;" class="btn btn-dark" (click)="updateIssue()">UPDATE</button>
+
+</form>

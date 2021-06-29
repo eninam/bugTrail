@@ -1,0 +1,76 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="/admin">BUGTRAIL</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText"
+    aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarText">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="/admin">Home <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#" (click)="loggout()">Logout</a>
+      </li>
+      <!-- <li class="nav-item">
+        <a class="nav-link" href="#">Pricing</a>
+      </li> -->
+    </ul>
+    <span class="navbar-text">
+      Welcome, {{name}}
+    </span>
+  </div>
+</nav>
+
+<h3>Project Detail Page</h3>
+<div class="container2">
+  <nav class="navbar navbar-dark bg-dark">
+    <a class="navbar-brand" href="#">Name: {{projectName}}</a>
+  </nav>
+  <div class="projectInfo">
+    <form (ngSubmit)="addUserToProject()" [formGroup]="projectForm" method="patch">
+      <!-- <div class="form-group">
+        <label for="exampleFormControlInput1">Email address</label>
+        <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
+      </div> -->
+      <div style="border-bottom: 0.5px solid rgb(177, 177, 177);">View all tickets for
+        <h4>{{projectName}}</h4>
+      </div>
+      <div class="form-group">
+        <label for="exampleFormControlSelect1">add people to the project</label>
+        <select formControlName="projectUsers" class="form-control" id="exampleFormControlSelect1">
+          <option disabled selected value> -- select an option -- </option>
+          <option *ngFor="let user of allUsers; let i = index" [attr.data-index]="i">{{user.name}}</option>
+        </select>
+      </div>
+      <button type="submit" class=" btn btn-dark">Add User</button>
+    </form>
+    <div *ngIf="project" class="project container">
+      <p>id: {{project._id}}</p>
+      <p>description: {{project.projectDescription}}</p>
+    </div>
+  </div>
+</div>
+<table class="container table table-striped table-dark">
+
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">ID</th>
+      <th scope="col">Project Members</th>
+      <th scope="col">Member Emails </th>
+      <th scope="col">Member Emails </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr [routerLink]="['/project/'+ project.projectName]" *ngFor="let projectUser of projectUsers; let i = index"
+      [attr.data-index]="i">
+      <th scope="row">{{i}}</th>
+      <td>{{projectUser._id}}</td>
+      <td>{{projectUser.name}}</td>
+      <td>{{projectUser.email}}</td>
+      <button style="color: red;" type="button" class="btn btn-danger" (click)="removeUser(projectUser)">Remove</button>
+    </tr>
+  </tbody>
+</table>
+<!-- <p>one-project works! {{projectName}}</p> -->

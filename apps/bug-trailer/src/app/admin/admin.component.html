@@ -1,0 +1,78 @@
+<!-- <div *ngIf="isLoggedIn; else elseBlock">Top Secret</div>
+ <ng-template #elseBlock>you are not logged in, cant see the secret</ng-template> -->
+<!-- <div>Top secret</div> -->
+<!-- <a href="#" (click)="loggout()">logout</a> -->
+<!-- <input type="submit" value="Submit" > -->
+
+<nav id="mainNav" class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="/admin">BUGTRAIL</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText"
+    aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarText">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="/admin">Home <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#" (click)="loggout()">Logout</a>
+      </li>
+      <!-- <li class="nav-item">
+        <a class="nav-link" href="#">Pricing</a>
+      </li> -->
+    </ul>
+    <span class="navbar-text">
+      Welcome, {{name}}
+    </span>
+  </div>
+</nav>
+<div class="container2">
+  <nav class="navbar navbar-dark bg-dark">
+    <a class="navbar-brand" href="#">User Dashboard</a>
+  </nav>
+  <div class="userInfo">
+    <div class="container projects">
+      <ul>
+        <li [routerLink]="['/project']">
+          create / View all projects
+        </li>
+        <li [routerLink]="['/issue']">
+          create / view My tickets
+        </li>
+      </ul>
+    </div>
+    <div class="container allTickets">
+      <nav class="navbar navbar-dark bg-dark">
+        <a class="navbar-brand" href="#">All tickets</a>
+      </nav>
+      <ul *ngFor="let issue of allIssues; let i = index" [attr.data-index]="i">
+        <li (click)="updateIfIssueBelongToYou(issue)" class="issueInfo">
+          <p><span class="desc">title </span> <span class="info">{{issue.title}} </span></p>
+          <p><span class="desc">description </span> <span class="info">{{issue.description}}</span></p>
+          <p><span class="desc">status </span> <span class="info">{{issue.status}}</span></p>
+          <p><span class="desc">priority </span> <span class="info">{{issue.priority}}</span></p>
+          <p><span class="desc">due date </span> <span class="info">{{issue.due_date}} </span></p>
+          <p><span class="desc">project </span> <span class="info">{{issue.projectName}} </span></p>
+          <p><span class="desc">assignedTo </span> <span class="info">{{issue.userName}} </span></p>
+          <p><span class="desc">createdBy </span> <span class="info">{{issue.createdByEmail}} </span></p>
+          <p *ngIf="issue.updatedBy"><span class="desc">updatedBy </span> <span class="info">{{issue.updatedBy}} </span>
+          </p>
+
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="container analytics">
+    <nav class="navbar navbar-dark bg-dark">
+      <a class="navbar-brand" href="#">Analytics</a>
+    </nav>
+    <canvas *ngIf="this.pieChartData" baseChart [data]="pieChartData" [labels]="pieChartLabels"
+      [chartType]="pieChartType"></canvas>
+
+    <!-- <div style="display: block">
+      <canvas baseChart [data]="pieChartData" [labels]="pieChartLabels" [chartType]="pieChartType"></canvas>
+    </div> -->
+  </div>
+</div>
+<!-- add an all ticket feed on the home  -->
